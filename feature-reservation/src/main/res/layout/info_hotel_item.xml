@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ratingContainer"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.2"
+            android:background="@drawable/background_ll" />
+
+        <ImageView
+            android:id="@+id/icStar"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="12dp"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/ratingContainer"
+            app:layout_constraintStart_toStartOf="@id/ratingContainer"
+            app:layout_constraintTop_toTopOf="@id/ratingContainer" />
+
+        <TextView
+            android:id="@+id/tvRating"
+            style="@style/TextViewStyle"
+            android:layout_height="match_parent"
+            android:textColor="@color/rating"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icStar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvName"
+        style="@style/TextViewStyle"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/ratingContainer"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/btnAddress"
+        style="@style/TextViewStyle"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/address"
+        android:textSize="13sp"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btnAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tvInfo"
+            style="@style/TextViewStyle"
+            android:layout_marginTop="15dp"
+            android:text="@string/departure"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvFrom"
+            style="@style/TextViewStyle"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="15dp"
+            android:textSize="17sp"
+            app:layout_constraintStart_toEndOf="@id/tvInfo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_marginTop="5dp"
+            android:text="@string/country"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvFrom" />
+
+        <TextView
+            android:id="@+id/tvCountry"
+            style="@style/TextViewStyle"
+            android:layout_marginTop="5dp"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@id/tvFrom"
+            app:layout_constraintTop_toBottomOf="@id/tvFrom" />
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_marginTop="5dp"
+            android:text="@string/date"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCountry" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            style="@style/TextViewStyle"
+            android:layout_marginTop="5dp"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@id/tvCountry"
+            app:layout_constraintTop_toBottomOf="@id/tvCountry" />
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_marginTop="5dp"
+            android:text="@string/countOfNight"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDate" />
+
+        <TextView
+            android:id="@+id/tvCountOfNight"
+            style="@style/TextViewStyle"
+            android:layout_marginTop="5dp"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@id/tvDate"
+            app:layout_constraintTop_toBottomOf="@id/tvDate" />
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_marginTop="5dp"
+            android:text="@string/room"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCountOfNight" />
+
+        <TextView
+            android:id="@+id/tvNameHotel"
+            style="@style/TextViewStyle"
+            android:layout_width="0dp"
+            android:layout_marginTop="5dp"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@id/tvCountOfNight"
+            app:layout_constraintTop_toBottomOf="@id/tvCountOfNight"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_marginTop="5dp"
+            android:text="@string/number"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNameHotel" />
+
+        <TextView
+            android:id="@+id/tvRoom"
+            style="@style/TextViewStyle"
+            android:layout_width="0dp"
+            android:layout_marginTop="5dp"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvNameHotel"
+            app:layout_constraintTop_toBottomOf="@id/tvNameHotel" />
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_marginTop="5dp"
+            android:text="@string/nutrition"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvRoom" />
+
+        <TextView
+            android:id="@+id/tvNutrition"
+            style="@style/TextViewStyle"
+            android:layout_marginTop="5dp"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@id/tvRoom"
+            app:layout_constraintTop_toBottomOf="@id/tvRoom" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

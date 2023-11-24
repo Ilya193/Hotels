@@ -1,0 +1,7 @@
+<resources>
+    <string name="paid">Заказ оплачен</string>
+    <string name="order_accept">Ваш заказ принят в работу</string>
+    <string name="information">Подтверждение заказа %1$d может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.</string>
+    <string name="great">Супер!</string>
+    <string name="welcome_messages">Hello, %1$s! You have %2$d new messages.</string>
+</resources>

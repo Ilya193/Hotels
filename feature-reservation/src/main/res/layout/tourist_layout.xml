@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tvInfo"
+        style="@style/TextViewStyle"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/black"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/hiddenContainer"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintTop_toTopOf="@id/tvInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tvInfo">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_more"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageView
+            android:id="@+id/icExpand"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_expand_less"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/tvInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nameTextField"
+            android:hint="@string/name"
+            app:hintTextColor="@android:color/darker_gray"
+            app:boxBackgroundMode="none"
+            style="@style/TextInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/surnameTextField"
+            android:hint="@string/surname"
+            app:hintTextColor="@android:color/darker_gray"
+            app:boxBackgroundMode="none"
+            style="@style/TextInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiSurname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/dateOfBirthTextField"
+            android:hint="@string/date_or_birth"
+            app:hintTextColor="@android:color/darker_gray"
+            app:boxBackgroundMode="none"
+            style="@style/TextInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiBirth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/citizenshipTextField"
+            android:hint="@string/citizenship"
+            app:hintTextColor="@android:color/darker_gray"
+            app:boxBackgroundMode="none"
+            style="@style/TextInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiCitizenship"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passportNumberTextField"
+            android:hint="@string/passport_number"
+            app:hintTextColor="@android:color/darker_gray"
+            app:boxBackgroundMode="none"
+            style="@style/TextInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiPassportNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/periodPassportTextField"
+            android:hint="@string/period_passport"
+            app:hintTextColor="@android:color/darker_gray"
+            app:boxBackgroundMode="none"
+            style="@style/TextInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiPeriodPassport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:imeOptions="actionDone"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

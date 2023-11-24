@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        style="@style/TextViewStyle"
+        android:layout_marginTop="15dp"
+        android:text="@string/tour"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTour"
+        style="@style/TextViewStyle"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="15dp"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        style="@style/TextViewStyle"
+        android:layout_marginTop="5dp"
+        android:text="@string/fuel_surcharge"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTour" />
+
+    <TextView
+        android:id="@+id/tvFuelSurcharge"
+        style="@style/TextViewStyle"
+        android:layout_marginTop="5dp"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTour" />
+
+    <TextView
+        style="@style/TextViewStyle"
+        android:layout_marginTop="5dp"
+        android:text="@string/service_fee"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFuelSurcharge" />
+
+    <TextView
+        android:id="@+id/tvServiceFee"
+        style="@style/TextViewStyle"
+        android:layout_marginTop="5dp"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFuelSurcharge" />
+
+    <TextView
+        style="@style/TextViewStyle"
+        android:layout_marginTop="5dp"
+        android:text="@string/to_pay"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvServiceFee" />
+
+    <TextView
+        android:id="@+id/tvToPay"
+        style="@style/TextViewStyle"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/select_num"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvServiceFee" />
+
+    <Button
+        android:id="@+id/btnPay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="25dp"
+        android:backgroundTint="@color/select_num"
+        android:text="@string/pay"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvServiceFee" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

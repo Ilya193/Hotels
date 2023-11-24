@@ -1,0 +1,44 @@
+<resources>
+    <string name="reservation">Бронирование</string>
+    <string name="departure">Вылет из</string>
+    <string name="country">Страна, город</string>
+    <string name="date">Даты</string>
+    <string name="countOfNight">Кол-во ночей</string>
+    <string name="room">Отель</string>
+    <string name="number">Номер</string>
+    <string name="nutrition">Питание</string>
+    <string name="info_about_buyer">Информация о покупателе</string>
+    <string name="number_of_phone">Номер телефона</string>
+    <string name="email">Почта</string>
+    <string name="info_for_pay">Эти данные никому не передаются. После оплаты мы вышлем чек на указанный вами номер и почту</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="tourist">турист</string>
+    <string name="append_tourist">Добавить туриста</string>
+    <string name="tour">Тур</string>
+    <string name="fuel_surcharge">Топливный сбор</string>
+    <string name="service_fee">Сервисный сбор</string>
+    <string name="to_pay">К оплате</string>
+    <string name="pay">Оплатить</string>
+    <string name="date_or_birth">Дата рождения</string>
+    <string name="citizenship">Гражданство</string>
+    <string name="passport_number">Номер загранпоспорта</string>
+    <string name="period_passport">Срок действия загранпаспорта</string>
+    <string name="fields_are_empty">Заполнены не все поля</string>
+    <string name="error_email">Почта введена некорректно</string>
+    <string name="not_filled">Заполнены не все поля</string>
+    <string name="field_not_filled">Поле не заполнено</string>
+
+    <string-array name="tourists">
+        <item>Первый</item>
+        <item>Второй</item>
+        <item>Третий</item>
+        <item>Четвертый</item>
+        <item>Пятый</item>
+        <item>Шестой</item>
+        <item>Седьмой</item>
+        <item>Восьмой</item>
+        <item>Девятый</item>
+        <item>Десятый</item>
+    </string-array>
+</resources>
