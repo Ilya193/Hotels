@@ -18,7 +18,7 @@ class ReservationViewModel(
     private var count = 0
     private val list = mutableListOf<HotelUi>()
 
-    fun fetchInfoHotel(state: Boolean) = viewModelScope.launch {
+    fun fetchInfoHotel() = viewModelScope.launch {
         if (list.isEmpty()) {
             _uiState.value = HotelUiState.Loading
             when (val hotel = fetchInfoHotelUseCase()) {

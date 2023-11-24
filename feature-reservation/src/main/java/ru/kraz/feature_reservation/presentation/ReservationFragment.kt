@@ -156,12 +156,12 @@ class ReservationFragment : BaseFragment<FragmentReservationBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fragmentResult(true, resources.getString(R.string.reservation))
-        settingViewModel(savedInstanceState)
+        settingViewModel()
         binding.rvList.adapter = adapter
     }
 
-    private fun settingViewModel(savedInstanceState: Bundle?) {
-        viewModel.fetchInfoHotel(savedInstanceState == null)
+    private fun settingViewModel() {
+        viewModel.fetchInfoHotel()
         viewModel.uiState.observe(viewLifecycleOwner) {
             binding.containerError.visibility =
                 if (it is HotelUiState.Error) View.VISIBLE else View.GONE
