@@ -25,14 +25,7 @@ class RoomsFragment : BaseFragment<FragmentRoomsBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setFragmentResult(ACTION_BACK_REQUEST_KEY, bundleOf(ACTION_BACK_KEY to true))
-        setFragmentResult(
-            TOOLBAR_TITLE_REQUEST_KEY,
-            bundleOf(
-                TOOLBAR_TITLE_KEY to
-                        title
-            )
-        )
+        fragmentResult(true, title)
         settingViewModel()
         settingListeners()
     }

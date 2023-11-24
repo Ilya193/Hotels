@@ -39,7 +39,7 @@ interface Screen {
         fragment: Class<out Fragment>,
     ) : ReplaceWithAddToBackStack(fragment.getDeclaredConstructor().newInstance())
 
-    abstract class ReplaceWithAddToBackStackWithClassWithClear(
+    abstract class ReplaceWithClear(
         fragment: Class<out Fragment>,
     ) : Replace(fragment) {
         override fun show(supportFragmentManager: FragmentManager, container: Int) {
@@ -64,4 +64,4 @@ data class RoomsScreen(private val title: String) :
     Screen.ReplaceWithAddToBackStack(RoomsFragment.newInstance(title))
 data object ReservationScreen : Screen.ReplaceWithAddToBackStackWithClass(ReservationFragment::class.java)
 data object PaidScreen : Screen.ReplaceWithAddToBackStackWithClass(PaidFragment::class.java)
-data object HotelScreenWithClear : Screen.ReplaceWithAddToBackStackWithClassWithClear(HotelFragment::class.java)
+data object HotelScreenWithClear : Screen.ReplaceWithClear(HotelFragment::class.java)

@@ -40,7 +40,7 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>() {
                 TOOLBAR_TITLE_REQUEST_KEY,
                 bundleOf(
                     TOOLBAR_TITLE_KEY to
-                    if (it is HotelUiState.Success) context?.getString(R.string.hotel) else ""
+                    if (it is HotelUiState.Success) resources.getString(R.string.hotel) else ""
                 )
             )
             binding.containerError.visibility =
@@ -65,7 +65,7 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>() {
                 }
 
                 binding.tvMinimalPrice.text =
-                    context?.getString(R.string.from) + mapValue + " ₽ "
+                    resources.getString(R.string.from) + mapValue + " ₽ "
                 binding.tvPriceForIt.text = it.hotel.priceForIt.lowercase()
 
                 binding.peculiarities.text = ""

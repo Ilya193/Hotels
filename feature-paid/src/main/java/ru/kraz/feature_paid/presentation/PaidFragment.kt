@@ -20,14 +20,7 @@ class PaidFragment : BaseFragment<FragmentPaidBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setFragmentResult(ACTION_BACK_REQUEST_KEY, bundleOf(ACTION_BACK_KEY to true))
-        setFragmentResult(
-            TOOLBAR_TITLE_REQUEST_KEY,
-            bundleOf(
-                TOOLBAR_TITLE_KEY to
-                        resources.getString(R.string.paid)
-            )
-        )
+        fragmentResult(true, resources.getString(R.string.paid))
         binding.infoOrder.text =
             String.format(resources.getString(R.string.information), (0..10000).random())
         binding.btnGreat.setOnClickListener {
@@ -38,10 +31,5 @@ class PaidFragment : BaseFragment<FragmentPaidBinding>() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         viewModel.coup()
-    }
-
-    companion object {
-        fun newInstance() =
-            PaidFragment()
     }
 }
