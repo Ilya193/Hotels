@@ -95,18 +95,18 @@ class HotelFragment : BaseFragment<FragmentHotelBinding>() {
         val list = listOf<AdvantageUi>(
             AdvantageUi(
                 R.drawable.ic_happy,
-                requireContext().getString(R.string.facilities),
-                requireContext().getString(R.string.essentials)
+                resources.getString(R.string.facilities),
+                resources.getString(R.string.essentials)
             ),
             AdvantageUi(
                 R.drawable.ic_include,
-                requireContext().getString(R.string.include),
-                requireContext().getString(R.string.essentials)
+                resources.getString(R.string.include),
+                resources.getString(R.string.essentials)
             ),
             AdvantageUi(
                 R.drawable.ic_not_include,
-                requireContext().getString(R.string.not_include),
-                requireContext().getString(R.string.essentials)
+                resources.getString(R.string.not_include),
+                resources.getString(R.string.essentials)
             )
         )
         val adapter = AdvantagesAdapter(list)

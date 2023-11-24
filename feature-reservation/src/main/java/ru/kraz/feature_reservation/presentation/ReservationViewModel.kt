@@ -1,12 +1,10 @@
 package ru.kraz.feature_reservation.presentation
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import ru.kraz.common.presentation.BaseViewModel
 import ru.kraz.common.core.ResourceProvider
 import ru.kraz.common.core.ResultFDS
+import ru.kraz.common.presentation.BaseViewModel
 import ru.kraz.feature_reservation.domain.FetchInfoHotelUseCase
 
 class ReservationViewModel(
@@ -14,7 +12,7 @@ class ReservationViewModel(
     private val fetchInfoHotelUseCase: FetchInfoHotelUseCase,
     private val infoHotelMapper: BaseToInfoHotelUiMapper,
     private val infoCommonMapper: BaseToInfoCommonUiMapper,
-    private val resourceProvider: ResourceProvider
+    private val resourceProvider: ResourceProvider,
 ) : BaseViewModel<HotelUiState>(reservationRouter) {
 
     private var count = 0
@@ -40,7 +38,9 @@ class ReservationViewModel(
                     count = 2
                     _uiState.value = HotelUiState.Success(list.toMutableList())
                 }
-                is ResultFDS.Error -> _uiState.value = HotelUiState.Error(resourceProvider.getString(hotel.e))
+
+                is ResultFDS.Error -> _uiState.value =
+                    HotelUiState.Error(resourceProvider.getString(hotel.e))
             }
         }
     }

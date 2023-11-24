@@ -14,10 +14,6 @@ sealed class HotelUi {
         val description: String,
         val peculiarities: List<String>,
     ) : HotelUi()
-
-    data class Error(
-        val message: String = "",
-    ) : HotelUi()
 }
 
 sealed interface HotelUiState {
