@@ -25,15 +25,15 @@ interface Navigation<T> {
         }
 
         override fun openReservation() {
-            update(ReservationScreen)
+            update(ReservationScreen())
         }
 
         override fun openPaid() {
-            update(PaidScreen)
+            update(PaidScreen())
         }
 
         override fun openHotel() {
-            update(HotelScreenWithClear)
+            update(HotelScreenWithClear())
         }
 
         override fun coup() {

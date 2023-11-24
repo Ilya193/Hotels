@@ -13,7 +13,6 @@ class RoomsViewModel(
     private val mapper: BaseToRoomUiMapper,
     private val resourceProvider: ResourceProvider,
 ) : BaseViewModel<RoomUiState>(router) {
-
     fun fetchRooms() = viewModelScope.launch {
         _uiState.value = RoomUiState.Loading
         when (val rooms = fetchRoomsUseCase()) {

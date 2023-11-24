@@ -1,6 +1,6 @@
 package ru.kraz.feature_hotel.presentation
 
-sealed class HotelUi {
+sealed interface HotelUi {
 
     data class Success(
         val id: Int,
@@ -13,7 +13,7 @@ sealed class HotelUi {
         val imageUrls: List<String>,
         val description: String,
         val peculiarities: List<String>,
-    ) : HotelUi()
+    ) : HotelUi
 }
 
 sealed interface HotelUiState {

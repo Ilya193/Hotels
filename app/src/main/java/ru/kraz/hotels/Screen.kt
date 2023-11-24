@@ -59,9 +59,9 @@ interface Screen {
     data object Coup : Screen
 }
 
-data object HotelScreen : Screen.Replace(HotelFragment::class.java)
+class HotelScreen : Screen.Replace(HotelFragment::class.java)
 data class RoomsScreen(private val title: String) :
     Screen.ReplaceWithAddToBackStack(RoomsFragment.newInstance(title))
-data object ReservationScreen : Screen.ReplaceWithAddToBackStackWithClass(ReservationFragment::class.java)
-data object PaidScreen : Screen.ReplaceWithAddToBackStackWithClass(PaidFragment::class.java)
-data object HotelScreenWithClear : Screen.ReplaceWithClear(HotelFragment::class.java)
+class ReservationScreen : Screen.ReplaceWithAddToBackStackWithClass(ReservationFragment::class.java)
+class PaidScreen : Screen.ReplaceWithAddToBackStackWithClass(PaidFragment::class.java)
+class HotelScreenWithClear : Screen.ReplaceWithClear(HotelFragment::class.java)

@@ -12,14 +12,14 @@ class ReservationViewModel(
     private val fetchInfoHotelUseCase: FetchInfoHotelUseCase,
     private val infoHotelMapper: BaseToInfoHotelUiMapper,
     private val infoCommonMapper: BaseToInfoCommonUiMapper,
-    private val resourceProvider: ResourceProvider,
+    private val resourceProvider: ResourceProvider
 ) : BaseViewModel<HotelUiState>(reservationRouter) {
 
     private var count = 0
     private val list = mutableListOf<HotelUi>()
 
     fun fetchInfoHotel(state: Boolean) = viewModelScope.launch {
-        if (list.isEmpty() || state) {
+        if (list.isEmpty()) {
             _uiState.value = HotelUiState.Loading
             when (val hotel = fetchInfoHotelUseCase()) {
                 is ResultFDS.Success -> {
@@ -38,9 +38,7 @@ class ReservationViewModel(
                     count = 2
                     _uiState.value = HotelUiState.Success(list.toMutableList())
                 }
-
-                is ResultFDS.Error -> _uiState.value =
-                    HotelUiState.Error(resourceProvider.getString(hotel.e))
+                is ResultFDS.Error -> _uiState.value = HotelUiState.Error(resourceProvider.getString(hotel.e))
             }
         }
     }

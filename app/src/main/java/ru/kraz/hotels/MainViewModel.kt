@@ -7,7 +7,7 @@ class MainViewModel(
 ): ViewModel() {
 
     fun init(first: Boolean) {
-        if (first) navigation.update(HotelScreen)
+        if (first) navigation.update(HotelScreen())
     }
 
     fun liveData() = navigation.read()
