@@ -4,7 +4,7 @@ import ru.kraz.common.presentation.BaseViewModel
 
 class PaidViewModel(
     private val paidRouter: PaidRouter
-): BaseViewModel(paidRouter) {
+): BaseViewModel<Unit>(paidRouter) {
 
     fun openHotel() = paidRouter.openHotel()
 }

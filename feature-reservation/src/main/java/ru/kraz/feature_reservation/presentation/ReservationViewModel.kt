@@ -15,12 +15,10 @@ class ReservationViewModel(
     private val infoHotelMapper: BaseToInfoHotelUiMapper,
     private val infoCommonMapper: BaseToInfoCommonUiMapper,
     private val resourceProvider: ResourceProvider
-) : BaseViewModel(reservationRouter) {
+) : BaseViewModel<HotelUiState>(reservationRouter) {
 
     private var count = 0
     private val list = mutableListOf<HotelUi>()
-    private val _uiState = MutableLiveData<HotelUiState>()
-    val uiState: LiveData<HotelUiState> get() = _uiState
 
     fun fetchInfoHotel(state: Boolean) = viewModelScope.launch {
         if (list.isEmpty() || state) {

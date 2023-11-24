@@ -21,10 +21,6 @@ sealed class RoomUi : Comparing<RoomUi> {
         override fun sameContent(item: RoomUi): Boolean =
             this == item
     }
-
-    data class Error(
-        val message: String = "",
-    ) : RoomUi()
 }
 
 sealed interface RoomUiState {
