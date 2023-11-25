@@ -1,6 +1,8 @@
 package ru.kraz.feature_hotel.presentation
 
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kraz.common.core.ResourceProvider
 import ru.kraz.common.core.ResultFDS
@@ -14,14 +16,14 @@ class HotelViewModel(
     private val fetchHotelUseCase: FetchHotelUseCase,
     private val mapper: ToUiMapper<HotelDomain, HotelUi.Success>,
     private val resourceProvider: ResourceProvider,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : BaseViewModel<HotelUiState>(hotelRouter) {
 
-    fun fetchHotel() = viewModelScope.launch {
-        _uiState.value = HotelUiState.Loading
+    fun fetchHotel() = viewModelScope.launch(dispatcher) {
+        _uiState.postValue(HotelUiState.Loading)
         when (val hotel = fetchHotelUseCase()) {
-            is ResultFDS.Success -> _uiState.value = HotelUiState.Success(mapper.map(hotel.data))
-            is ResultFDS.Error -> _uiState.value =
-                HotelUiState.Error(resourceProvider.getString(hotel.e))
+            is ResultFDS.Success -> _uiState.postValue(HotelUiState.Success(mapper.map(hotel.data)))
+            is ResultFDS.Error -> _uiState.postValue(HotelUiState.Error(resourceProvider.getString(hotel.e)))
         }
     }
 

@@ -1,6 +1,8 @@
 package ru.kraz.feature_reservation.presentation
 
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kraz.common.core.ResourceProvider
 import ru.kraz.common.core.ResultFDS
@@ -12,15 +14,16 @@ class ReservationViewModel(
     private val fetchInfoHotelUseCase: FetchInfoHotelUseCase,
     private val infoHotelMapper: BaseToInfoHotelUiMapper,
     private val infoCommonMapper: BaseToInfoCommonUiMapper,
-    private val resourceProvider: ResourceProvider
+    private val resourceProvider: ResourceProvider,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : BaseViewModel<HotelUiState>(reservationRouter) {
 
     private var count = 0
     private val list = mutableListOf<HotelUi>()
 
-    fun fetchInfoHotel() = viewModelScope.launch {
+    fun fetchInfoHotel() = viewModelScope.launch(dispatcher) {
         if (list.isEmpty()) {
-            _uiState.value = HotelUiState.Loading
+            _uiState.postValue(HotelUiState.Loading)
             when (val hotel = fetchInfoHotelUseCase()) {
                 is ResultFDS.Success -> {
                     val infoHotel = infoHotelMapper.map(hotel.data)
@@ -36,9 +39,9 @@ class ReservationViewModel(
                         )
                     )
                     count = 2
-                    _uiState.value = HotelUiState.Success(list.toMutableList())
+                    _uiState.postValue(HotelUiState.Success(list.toMutableList()))
                 }
-                is ResultFDS.Error -> _uiState.value = HotelUiState.Error(resourceProvider.getString(hotel.e))
+                is ResultFDS.Error -> _uiState.postValue(HotelUiState.Error(resourceProvider.getString(hotel.e)))
             }
         }
     }
