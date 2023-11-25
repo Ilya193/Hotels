@@ -1,5 +1,7 @@
 package ru.kraz.feature_reservation.presentation
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import ru.kraz.common.core.ResourceProvider
@@ -12,11 +14,40 @@ class ReservationViewModel(
     private val fetchInfoHotelUseCase: FetchInfoHotelUseCase,
     private val infoHotelMapper: BaseToInfoHotelUiMapper,
     private val infoCommonMapper: BaseToInfoCommonUiMapper,
-    private val resourceProvider: ResourceProvider
+    private val resourceProvider: ResourceProvider,
 ) : BaseViewModel<HotelUiState>(reservationRouter) {
 
     private var count = 0
     private val list = mutableListOf<HotelUi>()
+
+    fun searchError(action: Action) {
+        when (action) {
+            is Action.Search -> {
+                val index = 1
+                /*val end = list.size - 3
+                while (index <= end) {
+                    val item = list[index] as HotelUi.Tourist
+                    list[index] = HotelUi.Tourist(item.which, item.isHidden, !item.searchError)
+                }*/
+                val item = list[index] as HotelUi.InfoBuyer
+                list[index] = item.copy(searchError = true)
+                _uiState.value = HotelUiState.Success(list.toMutableList())
+            }
+
+            is Action.Coup -> {
+                val index = 1
+                /*val end = list.size - 3
+                while (index <= end) {
+                    val item = list[index] as HotelUi.Tourist
+                    list[index] = HotelUi.Tourist(item.which, item.isHidden, !item.searchError)
+                }*/
+                val item = list[index] as HotelUi.InfoBuyer
+                list[index] = item.copy(searchError = false)
+                _uiState.value = HotelUiState.Success(list.toMutableList())
+            }
+        }
+
+    }
 
     fun fetchInfoHotel() = viewModelScope.launch {
         if (list.isEmpty()) {
@@ -28,7 +59,7 @@ class ReservationViewModel(
                     list.addAll(
                         listOf(
                             infoHotel,
-                            HotelUi.InfoBuyer,
+                            HotelUi.InfoBuyer(),
                             HotelUi.Tourist(0, false),
                             HotelUi.Tourist(1),
                             HotelUi.AddTourist,
@@ -38,7 +69,9 @@ class ReservationViewModel(
                     count = 2
                     _uiState.value = HotelUiState.Success(list.toMutableList())
                 }
-                is ResultFDS.Error -> _uiState.value = HotelUiState.Error(resourceProvider.getString(hotel.e))
+
+                is ResultFDS.Error -> _uiState.value =
+                    HotelUiState.Error(resourceProvider.getString(hotel.e))
             }
         }
     }
@@ -57,4 +90,9 @@ class ReservationViewModel(
     }
 
     fun openPaid() = reservationRouter.openPaid()
+}
+
+sealed interface Action {
+    data object Search : Action
+    data object Coup : Action
 }

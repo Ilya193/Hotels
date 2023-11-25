@@ -55,6 +55,28 @@ class ReservationFragment : BaseFragment<FragmentReservationBinding>() {
                 )
                 mask.installOn(etPhone)
 
+                if (it.searchError) {
+                    if (etPhone.text.isEmpty()) {
+                        numberPhoneTextField.error = "ошибка"
+                        //viewModel.searchError(Action.Error)
+                    }
+                    if (etEmail.text.toString().isEmpty()) {
+                        emailTextField.error = "ошибка"
+                        //viewModel.searchError(Action.Error)
+                    }
+                }
+                else {
+                    numberPhoneTextField.error = null
+                    emailTextField.error = null
+                }
+
+                etPhone.setOnFocusChangeListener { _, hasFocus ->
+                    val text = etPhone.text.toString()
+                    if (!hasFocus && text.length < 16) numberPhoneTextField.error =
+                        getString(R.string.field_not_filled)
+                    else numberPhoneTextField.error = null
+                }
+
                 etEmail.setOnFocusChangeListener { _, hasFocus ->
                     val text = etEmail.text.toString()
                     if (!hasFocus && (text.isEmpty() || !validateEmail(text))) emailTextField.error =
@@ -118,15 +140,19 @@ class ReservationFragment : BaseFragment<FragmentReservationBinding>() {
                         val tourist = holder.itemView.findViewById<LinearLayout>(R.id.container)
                         val infoBuyer =
                             holder.itemView.findViewById<LinearLayout>(R.id.containerInfoBuyer)
-                        val errorTourist = searchError(tourist)
-                        val errorBuyer = searchError(infoBuyer)
+                        println("attadag $infoBuyer ${holder.itemView}")
+                        val errorTourist = false //searchError(tourist)
+                        val errorBuyer = false //searchError(infoBuyer)
                         if (errorTourist || errorBuyer) isError = true
                     }
-                    if (isError) Snackbar.make(
-                        binding.root,
-                        resources.getString(R.string.not_filled),
-                        Snackbar.LENGTH_SHORT
-                    ).show()
+                    if (isError) {
+                        Snackbar.make(
+                            binding.root,
+                            resources.getString(R.string.not_filled),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        viewModel.searchError(Action.Search)
+                    }
                     else viewModel.openPaid()
                 }
             }
@@ -174,5 +200,6 @@ class ReservationFragment : BaseFragment<FragmentReservationBinding>() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         viewModel.coup()
+        viewModel.searchError(Action.Coup)
     }
 }

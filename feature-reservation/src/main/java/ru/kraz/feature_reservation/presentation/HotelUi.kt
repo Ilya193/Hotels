@@ -16,7 +16,7 @@ sealed interface HotelUi {
         val nutrition: String
     ): HotelUi
 
-    data object InfoBuyer: HotelUi
+    data class InfoBuyer(val searchError: Boolean = false): HotelUi
 
     data class Tourist(val which: Int, val isHidden: Boolean = true): HotelUi
 
