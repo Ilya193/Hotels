@@ -26,7 +26,6 @@ import ru.kraz.feature_reservation.data.ReservationRepositoryImpl
 import ru.kraz.feature_reservation.data.ReservationService
 import ru.kraz.feature_reservation.domain.FetchInfoHotelUseCase
 import ru.kraz.feature_reservation.domain.ReservationRepository
-import ru.kraz.feature_reservation.presentation.BaseToInfoCommonUiMapper
 import ru.kraz.feature_reservation.presentation.BaseToInfoHotelUiMapper
 import ru.kraz.feature_reservation.presentation.ReservationRouter
 import ru.kraz.feature_reservation.presentation.ReservationViewModel
@@ -85,7 +84,7 @@ val viewModelsModule = module {
     }
 
     viewModel<ReservationViewModel> {
-        ReservationViewModel(get(), get(), get(), get(), get())
+        ReservationViewModel(get(), get(), get(), get())
     }
 
     viewModel<PaidViewModel> {
@@ -176,9 +175,5 @@ val mappersModule = module {
 
     factory<BaseToInfoHotelUiMapper> {
         BaseToInfoHotelUiMapper()
-    }
-
-    factory<BaseToInfoCommonUiMapper> {
-        BaseToInfoCommonUiMapper()
     }
 }

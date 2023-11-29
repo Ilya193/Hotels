@@ -1,7 +1,6 @@
 package ru.kraz.feature_reservation.presentation
 
 sealed interface HotelUi {
-
     data class InfoHotel(
         val id: Int,
         val hotelName: String,
@@ -13,26 +12,17 @@ sealed interface HotelUi {
         val tourDataStartToStop: String,
         val numberOfNights: Int,
         val room: String,
-        val nutrition: String
-    ): HotelUi
-
-    data class InfoBuyer(val searchError: Boolean = false): HotelUi
-
-    data class Tourist(val which: Int, val isHidden: Boolean = true): HotelUi
-
-    data object AddTourist: HotelUi
-
-    data class InfoCommon(
+        val nutrition: String,
         val tourPrice: Int,
         val fuelCharge: Int,
         val serviceCharge: Int,
-        val toPay: Int
-    ): HotelUi
+        val toPay: Int,
+    ) : HotelUi
 }
 
 sealed interface HotelUiState {
 
-    data class Success(val list: List<HotelUi>): HotelUiState
-    data class Error(val msg: String): HotelUiState
-    data object Loading: HotelUiState
+    data class Success(val data: HotelUi.InfoHotel) : HotelUiState
+    data class Error(val msg: String) : HotelUiState
+    data object Loading : HotelUiState
 }

@@ -11,5 +11,5 @@ abstract class BaseViewModel<T>(
     protected val _uiState = MutableLiveData<T>()
     val uiState: LiveData<T> get() = _uiState
 
-    fun coup() = router.coup()
+    open fun coup() = router.coup()
 }

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.ReservationFragment"
-    android:layout_marginHorizontal="20dp">
+    android:layout_marginHorizontal="25dp"
+    tools:context=".presentation.ReservationFragment">
 
     <ProgressBar
         android:id="@+id/loading"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,11 +46,395 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvList"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="15dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:scrollbars="none"
+        android:id="@+id/mainContainer">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ratingContainer"
+                    android:layout_width="150dp"
+                    android:layout_height="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.2"
+                        android:background="@drawable/background_ll" />
+
+                    <ImageView
+                        android:id="@+id/icStar"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginStart="12dp"
+                        android:src="@drawable/ic_star"
+                        app:layout_constraintBottom_toBottomOf="@id/ratingContainer"
+                        app:layout_constraintStart_toStartOf="@id/ratingContainer"
+                        app:layout_constraintTop_toTopOf="@id/ratingContainer" />
+
+                    <TextView
+                        android:id="@+id/tvRating"
+                        style="@style/TextViewStyle"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/rating"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/icStar"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tvName"
+                    style="@style/TextViewStyle"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnAddress"
+                    style="@style/TextViewStyle"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/address"
+                    android:textSize="13sp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvInfo"
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/departure"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvFrom"
+                        style="@style/TextViewStyle"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="15dp"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toEndOf="@id/tvInfo"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/country"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvFrom" />
+
+                    <TextView
+                        android:id="@+id/tvCountry"
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="@id/tvFrom"
+                        app:layout_constraintTop_toBottomOf="@id/tvFrom" />
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/date"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvCountry" />
+
+                    <TextView
+                        android:id="@+id/tvDate"
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="@id/tvCountry"
+                        app:layout_constraintTop_toBottomOf="@id/tvCountry" />
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/countOfNight"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvDate" />
+
+                    <TextView
+                        android:id="@+id/tvCountOfNight"
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="@id/tvDate"
+                        app:layout_constraintTop_toBottomOf="@id/tvDate" />
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/room"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvCountOfNight" />
+
+                    <TextView
+                        android:id="@+id/tvNameHotel"
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="@id/tvCountOfNight"
+                        app:layout_constraintTop_toBottomOf="@id/tvCountOfNight" />
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/number"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvNameHotel" />
+
+                    <TextView
+                        android:id="@+id/tvRoom"
+                        style="@style/TextViewStyle"
+                        android:layout_width="0dp"
+                        android:layout_marginTop="5dp"
+                        android:textSize="17sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tvNameHotel"
+                        app:layout_constraintTop_toBottomOf="@id/tvNameHotel" />
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/nutrition"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvRoom" />
+
+                    <TextView
+                        android:id="@+id/tvNutrition"
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="@id/tvRoom"
+                        app:layout_constraintTop_toBottomOf="@id/tvRoom" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tvInfoAboutBuyer"
+                    style="@style/TextViewStyle"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/info_about_buyer"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/numberPhoneTextField"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/number_of_phone"
+                    app:boxBackgroundMode="none"
+                    app:errorTextColor="#EB5757"
+                    app:hintTextColor="@android:color/darker_gray">
+
+                    <EditText
+                        android:id="@+id/etPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/emailTextField"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/email"
+                    app:boxBackgroundMode="none"
+                    app:errorTextColor="#EB5757"
+                    app:hintTextColor="@android:color/darker_gray">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    style="@style/TextViewStyle"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/info_for_pay"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvRoom" />
+
+                <LinearLayout
+                    android:id="@+id/containerTourists"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="35dp"
+                    android:orientation="vertical" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvInfoAdd"
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="15dp"
+                        android:textColor="@color/black"
+                        android:textSize="19sp"
+                        android:text="@string/append_tourist"
+                        android:textStyle="bold"
+                        android:layout_weight="2"/>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/background_cl">
+
+                        <ImageView
+                            android:id="@+id/icAddTourist"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:src="@drawable/baseline_add_24"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/tour"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvTour"
+                        style="@style/TextViewStyle"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="15dp"
+                        android:textSize="17sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/fuel_surcharge"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvTour" />
+
+                    <TextView
+                        android:id="@+id/tvFuelSurcharge"
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"
+                        android:textSize="17sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvTour" />
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/service_fee"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvFuelSurcharge" />
+
+                    <TextView
+                        android:id="@+id/tvServiceFee"
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"
+                        android:textSize="17sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvFuelSurcharge" />
+
+                    <TextView
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/to_pay"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvServiceFee" />
+
+                    <TextView
+                        android:id="@+id/tvToPay"
+                        style="@style/TextViewStyle"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/select_num"
+                        android:textSize="17sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvServiceFee" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <Button
+                    android:id="@+id/btnPay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="25dp"
+                    android:backgroundTint="@color/select_num"
+                    android:text="@string/pay"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

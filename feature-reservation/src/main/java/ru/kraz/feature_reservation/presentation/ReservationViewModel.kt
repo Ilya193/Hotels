@@ -1,8 +1,10 @@
 package ru.kraz.feature_reservation.presentation
 
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.kraz.common.core.ResourceProvider
 import ru.kraz.common.core.ResultFDS
@@ -13,86 +15,39 @@ class ReservationViewModel(
     private val reservationRouter: ReservationRouter,
     private val fetchInfoHotelUseCase: FetchInfoHotelUseCase,
     private val infoHotelMapper: BaseToInfoHotelUiMapper,
-    private val infoCommonMapper: BaseToInfoCommonUiMapper,
     private val resourceProvider: ResourceProvider,
 ) : BaseViewModel<HotelUiState>(reservationRouter) {
 
-    private var count = 0
-    private val list = mutableListOf<HotelUi>()
-
-    fun searchError(action: Action) {
-        when (action) {
-            is Action.Search -> {
-                val index = 1
-                /*val end = list.size - 3
-                while (index <= end) {
-                    val item = list[index] as HotelUi.Tourist
-                    list[index] = HotelUi.Tourist(item.which, item.isHidden, !item.searchError)
-                }*/
-                val item = list[index] as HotelUi.InfoBuyer
-                list[index] = item.copy(searchError = true)
-                _uiState.value = HotelUiState.Success(list.toMutableList())
-            }
-
-            is Action.Coup -> {
-                val index = 1
-                /*val end = list.size - 3
-                while (index <= end) {
-                    val item = list[index] as HotelUi.Tourist
-                    list[index] = HotelUi.Tourist(item.which, item.isHidden, !item.searchError)
-                }*/
-                val item = list[index] as HotelUi.InfoBuyer
-                list[index] = item.copy(searchError = false)
-                _uiState.value = HotelUiState.Success(list.toMutableList())
-            }
-        }
-
-    }
+    private var count = 1
+    private val _tourists = MutableLiveData<EventWrapper<TouristsState>>(EventWrapper.Single(TouristsState.Initial(count)))
+    val tourists: LiveData<EventWrapper<TouristsState>> get() = _tourists
 
     fun fetchInfoHotel() = viewModelScope.launch {
-        if (list.isEmpty()) {
-            _uiState.value = HotelUiState.Loading
-            when (val hotel = fetchInfoHotelUseCase()) {
-                is ResultFDS.Success -> {
-                    val infoHotel = infoHotelMapper.map(hotel.data)
-                    val infoCommon = infoCommonMapper.map(hotel.data)
-                    list.addAll(
-                        listOf(
-                            infoHotel,
-                            HotelUi.InfoBuyer(),
-                            HotelUi.Tourist(0, false),
-                            HotelUi.Tourist(1),
-                            HotelUi.AddTourist,
-                            infoCommon
-                        )
-                    )
-                    count = 2
-                    _uiState.value = HotelUiState.Success(list.toMutableList())
-                }
-
-                is ResultFDS.Error -> _uiState.value =
-                    HotelUiState.Error(resourceProvider.getString(hotel.e))
+        _uiState.value = HotelUiState.Loading
+        when (val hotel = fetchInfoHotelUseCase()) {
+            is ResultFDS.Success -> {
+                val infoHotel = infoHotelMapper.map(hotel.data)
+                _uiState.value = HotelUiState.Success(infoHotel)
             }
+            is ResultFDS.Error -> _uiState.value = HotelUiState.Error(resourceProvider.getString(hotel.e))
         }
     }
 
-    fun setHidden(tourist: HotelUi.Tourist) {
-        val index = list.indexOf(tourist)
-        list[index] = HotelUi.Tourist(tourist.which, !tourist.isHidden)
-        _uiState.value = HotelUiState.Success(list.toMutableList())
-    }
 
-    fun add(tourist: HotelUi.AddTourist) {
-        if (count < 10) {
-            list.add(list.indexOf(tourist), HotelUi.Tourist(count++))
-            _uiState.value = HotelUiState.Success(list.toMutableList())
-        }
+    fun add() {
+        if (count < 9) _tourists.value = EventWrapper.Single(TouristsState.Add(++count))
     }
 
     fun openPaid() = reservationRouter.openPaid()
+
+    override fun coup() {
+        super.coup()
+        _tourists.value = EventWrapper.Single(TouristsState.Initial(count))
+    }
 }
 
-sealed interface Action {
-    data object Search : Action
-    data object Coup : Action
+sealed interface TouristsState {
+
+    data class Initial(val count: Int) : TouristsState
+    data class Add(val count: Int) : TouristsState
 }
