@@ -16,6 +16,10 @@ class BaseToInfoHotelUiMapper : ToUiMapper<InfoHotelDomain, HotelUi.InfoHotel> {
             data.tourDataStart + " - " + data.tourDataStop,
             data.numberOfNights,
             data.room,
-            data.nutrition
+            data.nutrition,
+            data.tourPrice,
+            data.fuelCharge,
+            data.serviceCharge,
+            data.tourPrice + data.fuelCharge + data.serviceCharge
         )
 }
